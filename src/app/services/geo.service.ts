@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -25,7 +27,7 @@ export class GeoService {
         position = [location[0] + offset, location[1] + offset];
       }
     } else {
-      const response = await firstValueFrom(this._httpClient.get<any>(`/geognos/${countryCode.toUpperCase()}.json`));
+      const response = await firstValueFrom(this._httpClient.get<any>(`${environment.apiUrl}${countryCode.toUpperCase()}.json`));
       const countryInfo = typeof response === 'string' ? JSON.parse(response) : response;
 
       position = countryInfo?.Results?.GeoPt;

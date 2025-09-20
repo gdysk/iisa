@@ -46,6 +46,14 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+               "optimization": true,
+              "sourceMap": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -61,10 +69,16 @@
               "outputHashing": "all"
             },
             "development": {
-              "optimization": true,
+              "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
