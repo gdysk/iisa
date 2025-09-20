@@ -1,10 +1,10 @@
 {
-  "/geognos": {
-    "target": "http://www.geognos.com/api/en/countries/info",
+  "/rest": {
+    "target": "https://restcountries.com/v3.1/alpha/",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {
-      "^/geognos": ""
+      "^/rest": ""
     },
     "logLevel": "debug"
   }

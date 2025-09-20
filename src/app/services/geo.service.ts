@@ -27,10 +27,12 @@ export class GeoService {
         position = [location[0] + offset, location[1] + offset];
       }
     } else {
-      const response = await firstValueFrom(this._httpClient.get<any>(`${environment.apiUrl}${countryCode.toUpperCase()}.json`));
+      const response = await firstValueFrom(this._httpClient.get<any>(`${environment.apiUrl}${countryCode}`));
       const countryInfo = typeof response === 'string' ? JSON.parse(response) : response;
 
-      position = countryInfo?.Results?.GeoPt;
+      console.info('Info: ', countryInfo);
+
+      position = countryInfo?.[0].latlng;
       this._countryGeo.set(countryCode, position);
     }
 
