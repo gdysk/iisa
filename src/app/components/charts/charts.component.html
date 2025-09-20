@@ -1,0 +1,24 @@
+<div class="w-full">
+  <mat-card
+    appearance="outlined"
+    class="p-4">
+    <mat-card-header>
+      <mat-card-title>
+        <h2 class="text-base font-medium mb-4">Age Deviation</h2>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (dataAvailable) {
+        <canvas
+          class="w-full lg:max-h-40 lg:min-h-40 xl:max-h-80 xl:min-h-80"
+          baseChart
+          [data]="chartData()"
+          [options]="options"
+          type="bar"></canvas>
+      } @else {
+        <div class="flex items-center justify-center max-h-80 min-h-80"><span>No ages to show</span></div>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

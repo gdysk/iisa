@@ -1,0 +1,128 @@
+<div class="w-full">
+  <mat-card
+    appearance="outlined"
+    class="p-4 w-full">
+    <mat-card-header>
+      <mat-card-title>
+        <h2 class="text-base font-medium mb-4">IISA candidates</h2>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input
+          matInput
+          [formControl]="searchControl"
+          #input />
+      </mat-form-field>
+
+      @if (dataSource.filteredData.length) {
+        <div class="mat-elevation-z8 xl:max-h-80 xl:min-h-80 lg:max-h-60 lg:min-h-60 sm:max-h-40 sm:min-h-40 overflow-x-auto">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort>
+            <ng-container matColumnDef="name">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+                Name
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row">
+                {{ row.name }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="age">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+                Age
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row">
+                {{ row.age }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="country">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+                Country
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row">
+                <div class="flex items-center">
+                  <span [ngClass]="`fi fi-${row.countryCode}`"></span>
+                  <span class="ml-3">{{ row.country }}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="phone">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+                Phone
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row">
+                {{ row.phone }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+                Email
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row">
+                {{ row.email }}
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: columnsToDisplay"
+              [routerLink]="['/candidate', row.id]"
+              class="cursor-pointer"></tr>
+
+            <tr
+              class="mat-row"
+              *matNoDataRow>
+              <td
+                class="mat-cell"
+                colspan="4">
+                No data matching the filter "{{ input.value }}"
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          aria-label="Select page of candidates"></mat-paginator>
+      } @else {
+        <div class="flex items-center justify-center max-h-80 min-h-80"><span>No canditates to show</span></div>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

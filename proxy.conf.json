@@ -1,0 +1,11 @@
+{
+  "/geognos": {
+    "target": "http://www.geognos.com/api/en/countries/info",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/geognos": ""
+    },
+    "logLevel": "debug"
+  }
+}

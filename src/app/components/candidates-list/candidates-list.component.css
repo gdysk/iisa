@@ -1,0 +1,53 @@
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+tr.table-detail-row {
+  height: 0;
+}
+
+tr.table-row {
+  cursor: pointer;
+}
+
+tr.table-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.table-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.table-row td {
+  border-bottom-width: 0;
+}
+
+.candidate-detail-wrapper {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+  grid-template-columns: 100%;
+  transition: grid-template-rows 225ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.candidate-detail-wrapper-expanded {
+  grid-template-rows: 1fr;
+}
+
+.toggle-button {
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-button-expanded {
+  transform: rotate(180deg);
+}

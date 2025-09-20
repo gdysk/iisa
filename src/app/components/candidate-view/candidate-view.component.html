@@ -1,0 +1,72 @@
+<div class="flex items-center justify-center ">
+
+  <div class="flex flex-col justify-center h-full w-3xl pt-7">
+
+    <div class="mb-8 flex items-center justify-between">
+
+      <div class="flex items-center mb-4">
+        <mat-icon class="cursor-pointer" routerLink="/dashboard">arrow_back</mat-icon>
+        <button class="text-gray-600 cursor-pointer ml-2 text-base font-medium" routerLink="/dashboard">
+          Back
+        </button>
+      </div>
+
+      <div class="flex items-center">
+
+        <div class="flex items-center"
+          [ngClass]="prevEnd ? '/*bg-gray-300*/ px-4 py-2 rounded-md cursor-not-allowed opacity-50' : ''">
+
+          <mat-icon class="cursor-pointer">arrow_left</mat-icon>
+          <button class="text-gray-600 ml-1 text-base font-medium"
+            [ngClass]="prevEnd ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'" (click)="prevCandidate()">
+            Previous
+          </button>
+        </div>
+
+        <div class="flex items-center ml-3.5"
+          [ngClass]="nextEnd ? '/*bg-gray-300*/ px-4 py-2 rounded-md cursor-not-allowed opacity-50' : ''">
+          <button class="text-gray-600 mr-1 text-base font-medium"
+            [ngClass]="nextEnd ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'" (click)="nextCandidate()">
+            Next
+          </button>
+          <mat-icon class="cursor-pointer">arrow_right</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white p-8 rounded-xl shadow w-3xl max-w-3xl h-95 max-h-95">
+
+      @if (candidate) {
+
+      <div class="flex gap-4">
+
+        <div class="flex items-center justify-center max-w-33 min-w-33 max-h-33 min-h-33 p-1 border border-gray-400 rounded-xl">
+          <img [src]="candidate.imageDataUrl || 'assets/images/person.svg'" class="w-28 h-28 object-cover rounded"
+            alt="candidate" />
+        </div>
+
+        <div class="flex flex-col items-start ml-8">
+
+          <h2 class="text-2xl font-semibold">{{ candidate.name }}</h2>
+          <div class="flex items-center text-sm text-gray-600 mt-2"><span [ngClass]="`fi fi-${candidate.countryCode}`"></span><span class="ml-2">{{ candidate.country }} · {{ candidate.age }}</span></div>
+
+          <div class="mt-2 text-sm text-gray-600">
+            <p class="mt-2">{{ candidate.hobbies || 'No hobbies'}}</p>
+
+          </div>
+
+        </div>
+      </div>   
+
+      <div class="mt-12">
+        <h3 class="font-medium">Why I am the perfect candidate</h3>
+        <p class="mt-2">{{ candidate.why || "Don't know, why."}}</p>
+      </div>
+
+      } @else {
+      <div class="text-sm text-gray-500">Candidate not found</div>
+      }
+    </div>
+
+  </div>
+</div>

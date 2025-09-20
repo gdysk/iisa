@@ -1,0 +1,23 @@
+<div class="flex justify-center overflow-auto xl:w-7xl sm:w-2xl">
+  <div>
+    <h1 class="text-2xl font-bold mb-4">IISA Dashboard</h1>
+
+    <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="flex w-full gap-4 col-span-2">
+        <div class="p-4 bg-white rounded shadow w-[50%]">
+          <h3 class="text-base">Total visits</h3>
+          <p class="text-xl font-bold">{{ visits || 0 }}</p>
+        </div>
+
+        <div class="p-4 bg-white rounded shadow w-[50%]">
+          <h3 class="text-base">Registrations</h3>
+          <p class="text-xl font-bold">{{ registrations || 0 }}</p>
+        </div>
+      </div>
+
+      <app-candidates-list class="col-span-2"></app-candidates-list>
+      <app-charts class="sm:col-span-2 lg:col-span-1"></app-charts>
+      <app-map class="sm:col-span-2 lg:col-span-1"></app-map>
+    </div>
+  </div>
+</div>

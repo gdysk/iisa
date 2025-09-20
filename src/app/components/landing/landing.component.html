@@ -1,0 +1,102 @@
+<div class="flex w-full h-full items-center justify-center p-3 overflow-hidden">
+
+  <div>
+
+    <mat-card appearance="outlined" class="p-4 sm:w-80 lg:w-fit">
+
+      <mat-card-header>
+        <mat-card-title>
+          <h2 class="text-2xl font-semibold mb-4">IISA candidate registration</h2>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <form [formGroup]="form" class="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
+          <mat-form-field class="lg:col-span-2 sm:col-span-1" appearance="outline">
+            <mat-label>Full Name</mat-label>
+            <mat-icon matPrefix fontIcon="person" />
+            <input matInput type="text" formControlName="name" placeholder="Full name"
+              [value]="form.get('name')?.value | normalizeName">
+            <mat-error>
+              {{ getError(form.get("name"), "name") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <mat-icon matPrefix fontIcon="alternate_email" />
+            <input matInput type="email" formControlName="email" placeholder="example@mail.com">
+            <mat-error>
+              {{ getError(form.get("email"), "email") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <mat-icon matPrefix fontIcon="call" />
+            <input matInput type="tel" formControlName="phone" placeholder="+972559994444">
+            <mat-error>
+              {{ getError(form.get("phone"), "phone") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Age</mat-label>
+            <mat-icon matPrefix fontIcon="calendar_month" />
+            <input matInput type="number" min="18" max="100" step="1" formControlName="age">
+            <mat-error>
+              {{ getError(form.get("age"), "age") }}
+            </mat-error>
+          </mat-form-field>
+
+          <ng-country-select lang='en' [debounceTime]="200" [required]="true"
+            requiredErrorMessage='A country is required' [showRequiredErrorMessage]="true" appearance="outline"
+            placeholder="Country" [showFlag]="true" (countrySelected)="onCountrySelected($event)">
+          </ng-country-select>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Hobbies (Optional)</mat-label>
+            <textarea matInput formControlName="hobbies" maxlength="250"></textarea>
+            <mat-error>
+              {{ getError(form.get("hobbies"), "hobbies") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Why I am the perfect candidate (Optional)</mat-label>
+            <textarea matInput formControlName="why" maxlength="250"></textarea>
+            <mat-error>
+              {{ getError(form.get("why"), "why") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="lg:col-span-2 sm:col-span-1" appearance="outline">
+            <mat-label>Profile image (JPEG/PNG)</mat-label>
+            <mat-icon matPrefix fontIcon="image" />
+
+            <input class="cursor-pointer" matInput
+              [value]="selectedFileName.length ? selectedFileName : 'Select Image (Optional)'"
+              (click)="fileUpload.click()" readonly />
+
+            <input #fileUpload class="hidden" type="file" accept="image/png, image/jpeg"
+              (change)="selectFile($event)" />
+
+          </mat-form-field>
+
+        </form>
+      </mat-card-content>
+
+      <mat-card-footer class="block p-[16px] mt-8">
+
+        <div class="flex gap-2">
+          <button class="p-2 bg-indigo-600 text-white rounded" mat-flat-button type="submit" [disabled]="form.invalid"
+            (click)="onSubmit()">Register</button>
+        </div>
+      </mat-card-footer>
+
+    </mat-card>
+
+  </div>
+
+</div>

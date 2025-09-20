@@ -1,0 +1,30 @@
+<div>
+  <mat-card
+    appearance="outlined"
+    class="p-4">
+    <!-- class="p-4 w-full" -->
+    <mat-card-header>
+      <mat-card-title>
+        <h2 class="text-base font-medium mb-4">Candidates Map</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      @if (isLoading) {
+        <div class="flex items-center justify-center h-80">
+          <span>Loading candidates...</span>
+        </div>
+      } @else if (!dataAvailable) {
+        <div class="flex items-center justify-center h-80">
+          <span>No coordinates to show</span>
+        </div>
+      } @else {
+        <div
+          class="w-full lg:max-h-40 lg:min-h-40 xl:max-h-80 xl:min-h-80"
+          leaflet
+          [leafletOptions]="mapOptions"
+          [leafletLayers]="layers"
+          (leafletMapReady)="onMapReady($event)"></div>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

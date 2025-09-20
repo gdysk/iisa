@@ -1,0 +1,17 @@
+/* @import url('./assets/styles/normalize.css'); */
+@import 'tailwindcss';
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.mat-mdc-notch-piece.mdc-notched-outline__notch {
+  border-right: 0px !important;
+}
